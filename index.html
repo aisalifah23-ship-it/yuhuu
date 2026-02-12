@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Hiking Date 💕</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(to top, #ff9a9e, #fad0c4);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    max-width: 380px;
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+    z-index: 10;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+h1 {
+    color: #ff6b81;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 8px;
+    transition: 0.3s;
+}
+
+.yes {
+    background-color: #ff6b81;
+    color: white;
+}
+
+.yes:hover {
+    background-color: #ff4757;
+    transform: scale(1.1);
+}
+
+.no {
+    background-color: #70a1ff;
+    color: white;
+}
+
+/* Hearts animation */
+.heart {
+    position: absolute;
+    color: pink;
+    font-size: 20px;
+    animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh); opacity: 1; }
+    100% { transform: translateY(110vh); opacity: 0; }
+}
+
+.countdown {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <h1>🌄 trekking yuuuk, hubby? 🥺💗</h1>
+    <p>
+        nanjak pelan-pelan, istirahat sambil makan yupi,<br>
+        terus minum es berdua ☕✨
+    </p>
+
+    <div class="countdown" id="countdown"></div>
+
+    <button class="yes" onclick="alert('YAYYY 🥰 LOVEE terimaaciw hubby 💕')">
+        YESYESYES!! 💖
+    </button>
+
+    <button class="no" onclick="moveButton(this)">
+        Hmm... 😜
+    </button>
+</div>
+
+<script>
+// Tombol kabur
+function moveButton(button) {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    button.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// Countdown (GANTI TANGGALNYA)
+const targetDate = new Date("2026-03-01 05:00:00").getTime();
+const countdownElement = document.getElementById("countdown");
+
+setInterval(function() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+    countdownElement.innerHTML = "Countdown ke hiking date: " + days + " hari " + hours + " jam lagi 💕";
+}, 1000);
+
+// Falling hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
